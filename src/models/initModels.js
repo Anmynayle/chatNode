@@ -12,6 +12,9 @@ const initModels = () =>{
     Users.belongsToMany(Conversation, {through: Participants});
     Conversation.belongsToMany(Users, {through: Participants});
 
+    Users.belongsToMany(Conversation, {through: Message});
+    Conversation.belongsToMany(Users, {through: Message});
+
 }
 
 module.exports = initModels

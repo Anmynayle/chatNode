@@ -9,10 +9,15 @@ const Message = db.define('message',{
         primaryKey:true,
         allowNull: false
     },
-    senderId:{
+    message:{
+        type:DataTypes.STRING,
+        allowNull: false
+
+    },
+    userId:{
         type: DataTypes.UUID,
         allowNull: false,
-        field:'serder_id',
+        field:'user_id',
         references:{
             key:'id',
             model: Users
@@ -27,11 +32,6 @@ const Message = db.define('message',{
             key: 'id',
             model: Conversation
         },
-    },
-    message:{
-        type:DataTypes.STRING,
-        allowNull: false
-
     },
 })
 
