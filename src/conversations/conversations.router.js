@@ -5,13 +5,16 @@ const passport = require('passport')
 const conversationServices = require('./conversation.services')
 require('../middlewares/auth.middleware')
 
+// router.get('/', conversationServices.getAllConversation)
+
 router.route('/')
-    .get(passport.authenticate('jwt',{session:false}),
-        conversationServices.getConversationById
-        )
+    .get(
+        passport.authenticate('jwt',{session:false}),
+        conversationServices.getAllConversation)
+
     .post(
         passport.authenticate('jwt',{session:false}),
-        conversationServices.startConversation
+        conversationServices.createConversation
     )
 
 module.exports = router

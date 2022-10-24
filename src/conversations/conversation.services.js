@@ -1,10 +1,10 @@
 const conversationController = require('./conversations.controller')
 
-const startConversation = (req, res) =>{
+const createConversation = (req, res) =>{
     const userId = req.user.id
     const {title,imageUrl} = req.body
     if(title && imageUrl){
-        conversationController.startConversation({title, imageUrl,userId})
+        conversationController.createConversation({title, imageUrl,userId})
             .then(data =>{
                 res.status(200).json(data)
             })
@@ -22,20 +22,30 @@ const startConversation = (req, res) =>{
     }
 }
 
-const getConversationById = (req, res)=>{
-     const userId = req.user.id;
-     conversationController.getConversationById(userid)
-     .then((data)=>{
-        res.status(200).json(data);
-     })
-     .catch((err)=>{
-        res.status(404).json({message: err.message});
+// const getConversationById = (req, res)=>{
+//      const userId = req.user.id;
+//      conversationController.getConversationById(userId)
+//      .then((data)=>{
+//         res.status(200).json(data);
+//      })
+//      .catch((err)=>{
+//         res.status(404).json({message: err.message});
 
-     });
-    };
+//      });
+//     };
+
+const getAllConversation = (req, res) =>{
+    conversationController.getAllConversation()
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            res.status(400).json({message: err.message})
+        })
+}
 
     module.exports = {
-        getConversationById,
-        startConversation
+        getAllConversation,
+        createConversation
     }
 
