@@ -8,12 +8,18 @@ const initModels = () =>{
     Conversation.belongsTo(Users)
     //? Un usuario puede tener muchas conversaciones
     Users.hasMany(Conversation)
-    
-    Users.belongsToMany(Conversation, {through: Participants});
-    Conversation.belongsToMany(Users, {through: Participants});
 
-    Users.belongsToMany(Conversation, {through: Message});
-    Conversation.belongsToMany(Users, {through: Message});
+    Participants.belongsTo(Users)
+    Users.hasMany(Participants)
+
+    Message.belongsTo(Users)
+    Users.hasMany(Message)
+    
+    // Users.belongsToMany(Conversation, {through: Participants});
+    // Conversation.belongsToMany(Users, {through: Participants});
+
+    // Users.belongsToMany(Conversation, {through: Message});
+    // Conversation.belongsToMany(Users, {through: Message});
 
 }
 
