@@ -2,23 +2,14 @@ const uuid = require('uuid')
 const Conversation = require('../models/conversations.models')
 const Users = require('../models/users.models')
 
-// const getConversationById = async (id) => {
-//     const data = await Conversation.findOne({
-//         where:{
-//             id
-//         },
-//         include:[
-//             {
-//                 model: Users,
-//                 as:'user',
-//                 attributes:{
-//                     exclude:['password','createAt']
-//                 }
-//             }
-//         ]
-//     })
-//     return data
-// }
+ const getConversationById = async (id) => {
+     const data = await Conversation.findOne({
+         where:{
+             id
+         }
+    })
+     return data
+ }
 
 
 const getAllConversation = async ()=>{
@@ -51,5 +42,6 @@ const createConversation = async (data)=>{
 
 module.exports = {
     createConversation,
-    getAllConversation
+    getAllConversation,
+    getConversationById
 }

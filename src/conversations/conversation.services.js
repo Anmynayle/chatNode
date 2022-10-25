@@ -22,17 +22,18 @@ const createConversation = (req, res) =>{
     }
 }
 
-// const getConversationById = (req, res)=>{
-//      const userId = req.user.id;
-//      conversationController.getConversationById(userId)
-//      .then((data)=>{
-//         res.status(200).json(data);
-//      })
-//      .catch((err)=>{
-//         res.status(404).json({message: err.message});
-
-//      });
-//     };
+const getConversationById = (req, res) => {
+    const conversation_id = req.params.conversation_id;
+    conversationController
+      .getConversationById(conversation_id)
+      .then((data) => {
+        res.status(200).json(data);
+      })
+      .catch((err) => {
+        res.status(404).json({ message: err.message });
+      });
+  };
+  
 
 const getAllConversation = (req, res) =>{
     conversationController.getAllConversation()
@@ -46,6 +47,7 @@ const getAllConversation = (req, res) =>{
 
     module.exports = {
         getAllConversation,
+        getConversationById,
         createConversation
     }
 
