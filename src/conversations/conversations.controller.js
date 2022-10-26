@@ -1,3 +1,4 @@
+const { response } = require('express')
 const uuid = require('uuid')
 const Conversation = require('../models/conversations.models')
 const Users = require('../models/users.models')
@@ -40,8 +41,48 @@ const createConversation = async (data)=>{
     return response
 }
 
+const updateConversation = async (id, data) => {
+    const result = await Conversation.update(data,{
+        where:{
+            id
+        }
+    })
+    return result
+}
+
+const deleteConversation = async (id) =>{
+    const data = await Conversation.destroy({
+        where:{
+            id
+        }
+    })
+    return data
+}
+
+const getConversationMessage = async (messageId)=>{
+    const data = await Conversation.findAll({
+        where:{
+            messageId
+        }
+    })
+    return data
+}
+getConversationMessage('1c66cf2b-fdeb-4cf9-8395-458be311c135')
+    .then(response=>{
+        console.log(response)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+
+
+
+
 module.exports = {
     createConversation,
     getAllConversation,
-    getConversationById
+    getConversationById,
+    updateConversation,
+    deleteConversation,
+    getConversationMessage
 }

@@ -9,7 +9,7 @@ const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router');
 const initModels = require('./models/initModels');
 const conversationRouter = require('./conversations/conversations.router');
-
+const messageRouter= require('./message/message.router')
 //? Initial Configs
 const app = express()
 
@@ -44,6 +44,7 @@ app.get('/',(req, res) => {
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/conversations', conversationRouter)
+app.use('/api/v1/message', messageRouter)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)

@@ -45,9 +45,56 @@ const getAllConversation = (req, res) =>{
         })
 }
 
+const patchConversation = (req,res) =>{
+    const conversation_id = req.params.conversation_id;
+    const {title,imageUrl} = req.body;
+
+    conversationController.updateConversation(conversation_id,{title,imageUrl})
+    .then((data)=>{
+        if(data[0]){
+            res.status(200).json({message:`Conversation with ID: ${conversation_id}, edited succesfully!`});    
+        }else {
+            res.status(404).json({message:"Invalid Id"});
+        }
+    })
+    .catch((err)=>{
+        res.status(400).json({message: err.message});
+    });
+};
+
+const deleteConversation = (req,res) =>{
+    const conversation_id = req.params.conversation_id;
+     conversationController.deleteConversation(conversation_id)
+     .then((data)=>{
+        if(data){
+            res.status(204).json();
+        }else {
+            res.status(404).json({message:"Invalid id conversation"})
+        }
+     })
+     .catch((err)=>{
+        res.status(400).json({message: err.message});
+     });
+    
+} 
+
+const getConversationMessage = (req, res)=>{
+    const messageId = req.params.id
+    conversationController.getConversationMessage(messageId)
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            res.status(400).json({message: err.message})
+        })
+}
+
     module.exports = {
         getAllConversation,
         getConversationById,
-        createConversation
+        createConversation,
+        patchConversation,
+        deleteConversation,
+        getConversationMessage
     }
 
