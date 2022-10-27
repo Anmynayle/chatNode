@@ -1,4 +1,4 @@
-const Message = require('../models/conversations.models')
+const Message = require('../models/message.models')
 const uuid = require('uuid')
 
 const createMessage = async (data) => {
@@ -11,13 +11,12 @@ const createMessage = async (data) => {
     return response
 };
 
-createMessage({
-    message: 'hola anmy',
-    userId: '8bf1e2cc-dc06-4002-8f5e-be3933a185a8',
-    conversationId: '33517f66-b10a-490b-b48d-543fe0693765'
-}).then(res => console.log(res)).catch(err => console.log(err))
+// createMessage({
+//     message: 'hola anmy',
+//     userId: '8bf1e2cc-dc06-4002-8f5e-be3933a185a8',
+//     conversationId: '33517f66-b10a-490b-b48d-543fe0693765'
+// }).then(res => console.log(res)).catch(err => console.log(err))
 
 module.exports = {
     createMessage
-
 };

@@ -1,9 +1,9 @@
 const messageControllers = require('./message.controller');
 
 const createMessage = (req, res) => {
-  const message = req.body
   const userId = req.user.id
   const conversationId = req.params.id
+  const message = req.body
 
   if (message) {
     messageControllers.createMessage({ message, userId, conversationId })
@@ -14,9 +14,16 @@ const createMessage = (req, res) => {
         res.status(400).json({ message: err.message });
       });
   } else {
-    res.status(400).json({ message: "Missing Data" });
+    res.status(400).json({
+      message: 'Missing Data',
+      fields: {
+        title: 'string',
+        content: 'string',
+        categoryId: 'uuid'
+      }
+    })
   }
-};
+}
 
 module.exports = {
   createMessage
