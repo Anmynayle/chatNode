@@ -10,7 +10,7 @@ router.route('/:conversation_id/message')
         passport.authenticate('jwt',{session:false}),
         messageServices.createMessage)
 
-router.route('./:conversation_id/message')
+router.route('/:conversation_id/message')
     .get(getConversationMessage)
 
 

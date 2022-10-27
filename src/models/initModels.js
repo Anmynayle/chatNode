@@ -12,8 +12,14 @@ const initModels = () =>{
     Participants.belongsTo(Users)
     Users.hasMany(Participants)
 
+    Participants.belongsTo(Conversation)
+    Conversation.hasMany(Participants)
+
     Message.belongsTo(Users)
     Users.hasMany(Message)
+
+    Message.belongsTo(Conversation)
+    Conversation.hasMany(Message)
     
     // Users.belongsToMany(Conversation, {through: Participants});
     // Conversation.belongsToMany(Users, {through: Participants});

@@ -67,13 +67,13 @@ const getConversationMessage = async (messageId)=>{
     })
     return data
 }
-getConversationMessage('1c66cf2b-fdeb-4cf9-8395-458be311c135')
-    .then(response=>{
-        console.log(response)
-    })
-    .catch(err=>{
-        console.log(err)
-    })
+// getConversationMessage('1c66cf2b-fdeb-4cf9-8395-458be311c135')
+//     .then(response=>{
+//         console.log(response)
+//     })
+//     .catch(err=>{
+//         console.log(err)
+//     })
 
 
 
