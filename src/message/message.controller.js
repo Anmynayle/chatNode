@@ -14,7 +14,7 @@ const createMessage = async (data) => {
 const getMessagesbyConversation = async (conversationId)=>{
     const data = await Message.findAll({
         where:{
-            conversationId
+            conversationId,
         }
     })
     return data
@@ -33,7 +33,8 @@ const getMessagesIdbyConversation = async (conversationId, id)=>{
 const deleteMessage = async (conversationId,id)=>{
     const data = await Message.destroy({
         where:{
-            id
+            id,
+            conversationId
         }
     })
     return data

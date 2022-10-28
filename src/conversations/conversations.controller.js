@@ -43,19 +43,21 @@ const createConversation = async (data)=>{
     return response
 }
 
-const updateConversation = async (id, data) => {
+const updateConversation = async (id,user_id, data) => {
     const result = await Conversation.update(data,{
         where:{
-            id
+            id,
+            user_id
         }
     })
     return result
 }
 
-const deleteConversation = async (id) =>{
+const deleteConversation = async (id, user_id) =>{
     const data = await Conversation.destroy({
         where:{
-            id
+            id,
+            user_id
         }
     })
     return data

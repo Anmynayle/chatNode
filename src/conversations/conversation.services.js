@@ -47,10 +47,11 @@ const getAllConversation = (req, res) =>{
 }
 
 const patchConversation = (req,res) =>{
+    const user_id = req.user.id
     const conversation_id = req.params.conversation_id;
     const {title,imageUrl} = req.body;
 
-    conversationController.updateConversation(conversation_id,{title,imageUrl})
+    conversationController.updateConversation(conversation_id,user_id,{title,imageUrl})
     .then((data)=>{
         if(data[0]){
             res.status(200).json({message:`Conversation with ID: ${conversation_id}, edited succesfully!`});    
@@ -64,8 +65,9 @@ const patchConversation = (req,res) =>{
 };
 
 const deleteConversation = (req,res) =>{
+    const user_id = req.user.id
     const conversation_id = req.params.conversation_id;
-     conversationController.deleteConversation(conversation_id)
+     conversationController.deleteConversation(conversation_id,user_id)
      .then((data)=>{
         if(data){
             res.status(204).json();

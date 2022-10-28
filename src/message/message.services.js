@@ -17,14 +17,11 @@ const createMessage = (req, res) => {
     res.status(400).json({
       message: 'Missing Data',
       fields: {
-        title: 'string',
-        content: 'string',
-        categoryId: 'uuid'
+       message: 'string'
       }
     })
   }
 }
-
 
 const getMessagesbyConversation = (req, res)=>{
   const conversationId = req.params.conversation_id
