@@ -4,6 +4,7 @@ const passport = require('passport')
 
 const conversationServices = require('./conversation.services')
 const messageServices = require('../message/message.services')
+const participantsServices = require('../participants/participants.services')
 require('../middlewares/auth.middleware')
 
 router.route('/')
@@ -28,10 +29,10 @@ router.route('/:conversation_id')
         conversationServices.deleteConversation
     )
 router.route('/:conversation_id/message')
-   .post(
-    passport.authenticate('jwt',{session:false}),
-    messageServices.createMessage
-   )
+    .post(
+     passport.authenticate('jwt',{session:false}),
+     messageServices.createMessage
+    )
 
     .get(
         passport.authenticate('jwt',{session:false}),
@@ -48,4 +49,16 @@ router.route('/:conversation_id/message/:message_id')
         messageServices.deleteMessage
     )
 
+
+    router.route('/:conversation_id/participants')
+    .post(
+     passport.authenticate('jwt',{session:false}),
+     participantsServices.createParticipants
+    )
+
+    .get(
+        passport.authenticate('jwt',{session:false}),
+        participantsServices.getParticipantsbyConversation
+    )
+    
 module.exports = router
