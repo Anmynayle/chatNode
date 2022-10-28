@@ -23,9 +23,10 @@ const createConversation = (req, res) =>{
 }
 
 const getConversationById = (req, res) => {
+    const userId = req.user.id
     const conversation_id = req.params.conversation_id;
     conversationController
-      .getConversationById(conversation_id)
+      .getConversationById(conversation_id,userId)
       .then((data) => {
         res.status(200).json(data);
       })

@@ -3,10 +3,12 @@ const uuid = require('uuid')
 const Conversation = require('../models/conversations.models')
 const Users = require('../models/users.models')
 
- const getConversationById = async (id) => {
+ const getConversationById = async (id,userId) => {
      const data = await Conversation.findOne({
          where:{
-             id
+            id,
+            userId
+            
          }
     })
      return data
