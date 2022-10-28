@@ -2,8 +2,8 @@ const messageControllers = require('./message.controller');
 
 const createMessage = (req, res) => {
   const userId = req.user.id
-  const conversationId = req.params.id
-  const message = req.body
+  const conversationId = req.params.conversation_id
+  const {message} = req.body
 
   if (message) {
     messageControllers.createMessage({ message, userId, conversationId })
