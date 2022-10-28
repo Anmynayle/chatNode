@@ -78,23 +78,12 @@ const deleteConversation = (req,res) =>{
     
 } 
 
-const getConversationMessage = (req, res)=>{
-    const messageId = req.params.id
-    conversationController.getConversationMessage(messageId)
-        .then(data=>{
-            res.status(200).json(data)
-        })
-        .catch(err=>{
-            res.status(400).json({message: err.message})
-        })
-}
 
     module.exports = {
         getAllConversation,
         getConversationById,
         createConversation,
         patchConversation,
-        deleteConversation,
-        getConversationMessage
+        deleteConversation
     }
 

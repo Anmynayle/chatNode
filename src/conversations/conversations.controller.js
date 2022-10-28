@@ -59,21 +59,6 @@ const deleteConversation = async (id) =>{
     return data
 }
 
-const getConversationMessage = async (messageId)=>{
-    const data = await Conversation.findAll({
-        where:{
-            messageId
-        }
-    })
-    return data
-}
-// getConversationMessage('1c66cf2b-fdeb-4cf9-8395-458be311c135')
-//     .then(response=>{
-//         console.log(response)
-//     })
-//     .catch(err=>{
-//         console.log(err)
-//     })
 
 
 
@@ -83,6 +68,5 @@ module.exports = {
     getAllConversation,
     getConversationById,
     updateConversation,
-    deleteConversation,
-    getConversationMessage
+    deleteConversation
 }

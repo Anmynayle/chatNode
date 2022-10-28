@@ -11,12 +11,25 @@ const createMessage = async (data) => {
     return response
 };
 
-// createMessage({
-//     message: 'hola anmy',
-//     userId: '8bf1e2cc-dc06-4002-8f5e-be3933a185a8',
-//     conversationId: '33517f66-b10a-490b-b48d-543fe0693765'
-// }).then(res => console.log(res)).catch(err => console.log(err))
+const getMessagebyConversation = async (conversationId)=>{
+    const data = await Message.findAll({
+        where:{
+            conversationId
+        }
+    })
+    return data
+}
+// //*test mesagge por conversation 
+// getMessagebyConversation('d2cf4232-9bd8-4b04-a809-3ff6bb80c58e')
+//      .then(response=>{
+//         console.log(response)
+//      })
+//      .catch(err=>{
+//          console.log(err)
+//      })
+
 
 module.exports = {
-    createMessage
+    createMessage,
+    getMessagebyConversation
 };

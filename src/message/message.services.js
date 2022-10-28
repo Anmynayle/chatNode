@@ -25,6 +25,18 @@ const createMessage = (req, res) => {
   }
 }
 
+
+const getMessagebyConversation = (req, res)=>{
+  const conversationId = req.params.conversation_id
+  messageControllers.getMessagebyConversation(conversationId)
+      .then(data=>{
+          res.status(200).json(data)
+      })
+      .catch(err=>{
+          res.status(400).json({message: err.message})
+      })
+}
 module.exports = {
-  createMessage
+  createMessage,
+  getMessagebyConversation
 }
