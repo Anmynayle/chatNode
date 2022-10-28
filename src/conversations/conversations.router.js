@@ -60,5 +60,16 @@ router.route('/:conversation_id/message/:message_id')
         passport.authenticate('jwt',{session:false}),
         participantsServices.getParticipantsbyConversation
     )
+
+    router.route('/:conversation_id/participants/:participants_id')
+    .get(
+        passport.authenticate('jwt',{session:false}),
+        participantsServices.getParticipantsIdbyConversation
+    )
+    .delete(
+        passport.authenticate('jwt',{session:false}),
+        participantsServices.deleteParticipants
+    )
+
     
 module.exports = router

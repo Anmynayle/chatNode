@@ -19,7 +19,29 @@ const createParticipants = async (data) => {
     return response
 };
 
+
+const getParicipantsIdbyConversation = async (conversationId, id)=>{
+    const data = await Participants.findAll({
+        where:{
+            conversationId,
+            id
+        }
+    })
+    return data
+}
+
+const deleteParticipants = async (conversationId,id)=>{
+    const data = await Participants.destroy({
+        where:{
+            conversationId,
+            id
+        }
+    })
+    return data
+}
 module.exports ={
     getParticipantsbyConversations,
-    createParticipants
+    createParticipants,
+    getParicipantsIdbyConversation,
+    deleteParticipants
 }
