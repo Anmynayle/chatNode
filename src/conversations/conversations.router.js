@@ -31,11 +31,21 @@ router.route('/:conversation_id/message')
    .post(
     passport.authenticate('jwt',{session:false}),
     messageServices.createMessage
-    )
+   )
 
     .get(
         passport.authenticate('jwt',{session:false}),
-        messageServices.getMessagebyConversation
+        messageServices.getMessagesbyConversation
+    )
+    
+router.route('/:conversation_id/message/:message_id')
+    .get(
+        passport.authenticate('jwt',{session:false}),
+        messageServices.getMessagesIdbyConversation
+    )
+    .delete(
+        passport.authenticate('jwt',{session:false}),
+        messageServices.deleteMessage
     )
 
 module.exports = router

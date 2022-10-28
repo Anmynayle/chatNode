@@ -26,9 +26,9 @@ const createMessage = (req, res) => {
 }
 
 
-const getMessagebyConversation = (req, res)=>{
+const getMessagesbyConversation = (req, res)=>{
   const conversationId = req.params.conversation_id
-  messageControllers.getMessagebyConversation(conversationId)
+  messageControllers.getMessagesbyConversation(conversationId)
       .then(data=>{
           res.status(200).json(data)
       })
@@ -36,7 +36,38 @@ const getMessagebyConversation = (req, res)=>{
           res.status(400).json({message: err.message})
       })
 }
+
+const getMessagesIdbyConversation = (req, res)=>{
+  const conversationId = req.params.conversation_id
+  const messageId = req.params.message_id
+  messageControllers.getMessagesIdbyConversation(conversationId, messageId)
+      .then(data=>{
+          res.status(200).json(data)
+      })
+      .catch(err=>{
+          res.status(400).json({message: err.message})
+      })
+}
+
+const deleteMessage = (req,res)=>{
+  const conversationId = req.params.conversation_id
+  const messageId = req.params.message_id
+  messageControllers.deleteMessage(conversationId,messageId)
+    .then(data=>{
+      if(data){
+      res.status(200).json();
+      }else{
+        res.status(404).json({message: "invalid Id"})
+      }
+    })
+    .catch(err=>{
+      res.status(400).json({message: err.message})
+    })
+}
+
 module.exports = {
   createMessage,
-  getMessagebyConversation
+  getMessagesbyConversation,
+  getMessagesIdbyConversation,
+  deleteMessage
 }

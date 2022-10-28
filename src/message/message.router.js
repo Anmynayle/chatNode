@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 
-const { getMessagebyConversation} = require('./message.services')
+const { getMessagesIdbyConversation} = require('./message.services')
 
 
 // router.route('/:conversation_id/message')
@@ -9,9 +9,9 @@ const { getMessagebyConversation} = require('./message.services')
 //         passport.authenticate('jwt',{session:false}),
 //         messageServices.createMessage)
 
-router.route('/:conversation_id/message')
+router.route('/:conversation_id/message/message_id')
     .get(
-        getMessagebyConversation)
+        getMessagesIdbyConversation)
 
 
 module.exports = router
