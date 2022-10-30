@@ -1,17 +1,14 @@
 const router = require('express').Router()
-const passport = require('passport')//?1 para rutas  protegidas
+const passport = require('passport')
 const adminValidate = require('../middlewares/rol.middleware')
 const userServices = require('./users.services')
 
+require('../middlewares/auth.middleware')(passport)
+
+
 //? rutas raiz
 
-// router.get('/', passport.authenticate('jwt',{session:false}),
-//             userServices.getAllUsers)//? 3con esto la ryta esta protegida
-
-
-router.get('/',userServices.getAllUsers)      
-
-require('../middlewares/auth.middleware')(passport)//? 2para rutas protegidas
+router.get('/', userServices.getAllUsers)
 
 //TODO el registerUser ira en la ruta /auth/register
 
@@ -23,26 +20,24 @@ require('../middlewares/auth.middleware')(passport)//? 2para rutas protegidas
 //! router.patch('/:id')
 //! router.put('/:id')
 //! router.delete('/:id')
-//?/api/v1/users/:id
 
-
-//? Ruta de informaci'on propia del usuario logueado
+//? Ruta de informacion propia del usuario loggeado
 router.route('/me')
     .get(
-        passport.authenticate('jwt',{session:false}),
+        passport.authenticate('jwt', {session: false}),
         userServices.getMyUser)
     .patch(
-        passport.authenticate('jwt',{session:false}),
+        passport.authenticate('jwt', {session: false}),
         userServices.patchMyUser
     )
     .delete(
-        passport.authenticate('jwt', {session:false}),
+        passport.authenticate('jwt', {session: false}),
         userServices.deleteMyUser
     )
 
+//? /api/v1/users/:id
 router.route('/:id')
     .get(userServices.getUserById)
-
     .patch(
         passport.authenticate('jwt', {session: false}),
         adminValidate,
@@ -53,6 +48,8 @@ router.route('/:id')
         adminValidate,
         userServices.deleteUser
     )
+
+
 
 
 
