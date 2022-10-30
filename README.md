@@ -1,4 +1,4 @@
-# SKELETON
+# SKELETON mas chat
  - Express
  - PosgresSQL
  - Sequelize ORM
